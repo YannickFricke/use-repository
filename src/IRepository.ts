@@ -1,6 +1,7 @@
 import { Identifiable } from './Identifiable';
 
 export interface IRepository<T extends Identifiable> {
+    getAll: () => T[];
     find: (id: Identifiable['id']) => T | undefined;
     findOneBy: (params: Partial<T>) => T | undefined;
     findBy: (params: Partial<T>) => T[];

@@ -20,6 +20,15 @@ describe('useRepository', () => {
         expect(useRepository).toBeDefined();
     });
 
+    it('should return all entries', () => {
+        entries.push(testEntry);
+
+        const repository = useRepository(entries, setEntries);
+        const savedEntries = repository.getAll();
+
+        expect(savedEntries).toHaveLength(1);
+    });
+
     describe('find', () => {
         it('should find a single entry', () => {
             entries.push(testEntry);

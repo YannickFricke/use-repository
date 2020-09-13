@@ -8,6 +8,13 @@ import { IRepository } from './IRepository';
 export const useRepository = <T extends Identifiable>(values: T[], setValues: (newValue: T[]) => void): IRepository<T> => {
     return {
         /**
+         * Returns all entries
+         */
+        getAll: function() {
+            return values;
+        },
+
+        /**
          * Returns the entry with the given id.
          * Undefined will be returned when no entry was found.
          *
