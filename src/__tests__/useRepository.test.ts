@@ -130,6 +130,34 @@ describe('useRepository', () => {
                 },
             ]);
         });
+
+        it('should return the original value when the id not matches', () => {
+            entries.push(testEntry);
+            entries.push({
+                id: 2,
+                name: 'Testing jest',
+            });
+
+            const repository = useRepository(entries, setEntries);
+
+            repository.update(testEntry.id, {
+                name: 'TDD with jest rocks!',
+            });
+
+            expect(entries).toHaveLength(2);
+            expect(
+                entries,
+            ).toStrictEqual([
+                {
+                    id: testEntry.id,
+                    name: 'TDD with jest rocks!',
+                },
+                {
+                    id: 2,
+                    name: 'Testing jest',
+                },
+            ]);
+        });
     });
 
     describe('remove entries', () => {
