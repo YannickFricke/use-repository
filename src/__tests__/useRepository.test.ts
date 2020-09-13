@@ -1,11 +1,7 @@
 import { useRepository } from '../useRepository';
-import { Identifiable } from '../Identifiable';
+import { ITestEntry } from './ITestEntry';
 
-interface ITestEntry extends Identifiable {
-    name: string;
-}
-
-describe('useArrayRepository', () => {
+describe('useRepository', () => {
     let entries: ITestEntry[];
     const setEntries = (newEntries: ITestEntry[]) => {
         entries = newEntries;
