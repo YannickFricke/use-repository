@@ -17,6 +17,7 @@
         "test:watch": "jest --watch"
     },
     "dependencies": {
+        "@yannickfricke/use-local-storage": "^1.1.0",
         "react": "^16.13.1"
     },
     "devDependencies": {
