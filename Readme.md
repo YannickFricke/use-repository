@@ -52,6 +52,9 @@ const [entities, setEntities] = useState([]);
 // The second argument is an function which will update the data source with the new values
 const repository = useRepository(entities, setEntities);
 
+// Returns all entities
+const allEntries = repository.getAll();
+
 // Find an entry by its id
 const foundEntryById = repository.find('idToSearch')
 
