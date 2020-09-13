@@ -5,4 +5,5 @@ module.exports = {
     collectCoverage: true,
     coverageReporters: ['lcov'],
     coverageDirectory: '../coverage',
+    testRegex: '/__tests__/.*\\.(test|spec)\\.[jt]sx?$',
 };
