@@ -1,6 +1,6 @@
 module.exports = {
     branches: ['master'],
-    repositoryUrl: 'https://github.com/YannickFricke/use-local-storage.git',
+    repositoryUrl: 'https://github.com/YannickFricke/use-repository.git',
     plugins: [
         '@semantic-release/commit-analyzer',
         '@semantic-release/release-notes-generator',
