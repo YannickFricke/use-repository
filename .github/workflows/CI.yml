@@ -26,8 +26,10 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v2
-            - name: Install modules
-              run: yarn install
+            - name: Install yarn
+              run: sudo npm install -g yarn
+            - name: Install react as dependency
+              run: yarn add react
             - name: Release new version
               run: yarn run release
               env:
