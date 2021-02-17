@@ -1,3 +1,11 @@
+# [3.1.0](https://github.com/YannickFricke/use-repository/compare/v3.0.0...v3.1.0) (2021-02-17)
+
+
+### Features
+
+* **uselocalstoragerepository:** added the id field feature ([d3392e7](https://github.com/YannickFricke/use-repository/commit/d3392e7db9f64754bc2a414a87fa5a0c5809fd0e))
+* **usesyncedlocalstoragerepository:** added the id field feature ([8e94425](https://github.com/YannickFricke/use-repository/commit/8e9442575951e04386a3b756b59d29407826d785))
+
 # [3.0.0](https://github.com/YannickFricke/use-repository/compare/v2.0.1...v3.0.0) (2021-02-17)
 
 
