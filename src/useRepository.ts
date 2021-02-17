@@ -3,8 +3,9 @@ import filter from 'lodash/filter';
 import find from 'lodash/find';
 import reject from 'lodash/reject';
 
-import { Identifiable } from './Identifiable';
 import { IRepository } from './IRepository';
+
+export type IDType = string | number;
 
 /**
  * A small function which provides repository functionalities for arrays.
@@ -21,7 +22,7 @@ import { IRepository } from './IRepository';
  *          const userRepository = useRepository(values, setValues);
  *          const users = userRepository.getAll();
  */
-export const useRepository = <EntityType extends Identifiable>(
+export const useRepository = <EntityType extends Record<any, any>>(
     values: EntityType[],
     setValues: (newValue: EntityType[]) => void,
     idField: string = 'id',
@@ -43,10 +44,10 @@ export const useRepository = <EntityType extends Identifiable>(
          * @param id The unique identifier of the entry
          * @returns {EntityType|undefined} The found entry or undefined when no entry was found
          */
-        find: function (id: Identifiable['id']) {
-            return this.findOneBy(({
+        find: function (id: IDType) {
+            return this.findOneBy({
                 [idField]: id,
-            } as unknown) as Partial<EntityType>) as EntityType | undefined;
+            } as Partial<EntityType>) as EntityType | undefined;
         },
 
         /**
@@ -75,7 +76,7 @@ export const useRepository = <EntityType extends Identifiable>(
          * @param value The entity which should be added
          */
         insert: function (value: EntityType) {
-            if (this.find(value.id) !== undefined) {
+            if (this.find(value[idField]) !== undefined) {
                 return;
             }
 
@@ -89,15 +90,12 @@ export const useRepository = <EntityType extends Identifiable>(
          * @param id The unique identifier of the entity which should be updated
          * @param newProps The new properties for the entry
          */
-        update: function (
-            id: Identifiable['id'],
-            newProps: Partial<EntityType>,
-        ) {
+        update: function (id: IDType, newProps: Partial<EntityType>) {
             if (this.find(id) === undefined) {
                 return;
             }
 
-            const newValues = values.map((entry: any) =>
+            const newValues = values.map((entry: EntityType) =>
                 entry[idField] !== id
                     ? entry
                     : {
@@ -113,8 +111,10 @@ export const useRepository = <EntityType extends Identifiable>(
          *
          * @param id The unique identifier of the entry
          */
-        remove: function (id: Identifiable['id']) {
-            setValues(values.filter((entry: any) => entry[idField] !== id));
+        remove: function (id: IDType) {
+            setValues(
+                values.filter((entry: EntityType) => entry[idField] !== id),
+            );
         },
 
         /**
