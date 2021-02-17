@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/YannickFricke/use-repository/compare/v1.0.0...v1.0.1) (2021-02-17)
+
+
+### Bug Fixes
+
+* **index:** fixed the imports ([ee31ec9](https://github.com/YannickFricke/use-repository/commit/ee31ec9105c177809e818a87fd3912571f93672f))
+
 # 1.0.0 (2020-09-13)
 
 
