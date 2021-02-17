@@ -1,4 +1,4 @@
-import { Identifiable } from './Identifiable';
+import { IDType, IEntityType } from './types';
 
 /**
  * Defines common repository functionalities
@@ -7,7 +7,7 @@ import { Identifiable } from './Identifiable';
  * @interface IRepository
  * @template T The type of the entity which must extend the Identifiable interface
  */
-export interface IRepository<T extends Identifiable> {
+export interface IRepository<T extends IEntityType> {
     /**
      * Returns all entities from the data source
      *
@@ -24,7 +24,7 @@ export interface IRepository<T extends Identifiable> {
      * @returns {T|undefined} The found entry when it was found by the given id.
      *                          Or undefined when no entry was found.
      */
-    find: (id: Identifiable['id']) => T | undefined;
+    find: (id: IDType) => T | undefined;
 
     /**
      * Finds an entry with the given params
@@ -57,10 +57,10 @@ export interface IRepository<T extends Identifiable> {
      * Updates an entry with the given id
      *
      * @memberOf IRepository
-     * @param {Identifiable['id']} id The id of the entry which should be updated
+     * @param {IDType} id The id of the entry which should be updated
      * @param {Partial<T>} newProps The new values
      */
-    update: (id: Identifiable['id'], newProps: Partial<T>) => void;
+    update: (id: IDType, newProps: Partial<T>) => void;
 
     /**
      * Removes the entity with the given id
@@ -68,7 +68,7 @@ export interface IRepository<T extends Identifiable> {
      * @memberOf IRepository
      * @param id The id of the entity
      */
-    remove: (id: Identifiable['id']) => void;
+    remove: (id: IDType) => void;
 
     /**
      * Removes the entities where the properties match
