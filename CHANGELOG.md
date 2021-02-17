@@ -1,3 +1,15 @@
+# [3.0.0](https://github.com/YannickFricke/use-repository/compare/v2.0.1...v3.0.0) (2021-02-17)
+
+
+### Code Refactoring
+
+* **index:** export the useSyncedLocalStorageRepository and types ([fe7aeb6](https://github.com/YannickFricke/use-repository/commit/fe7aeb6e0f3574661b335eda6652725ba8c75da8))
+
+
+### BREAKING CHANGES
+
+* **index:** Removed the default export
+
 ## [2.0.1](https://github.com/YannickFricke/use-repository/compare/v2.0.0...v2.0.1) (2021-02-17)
 
 
