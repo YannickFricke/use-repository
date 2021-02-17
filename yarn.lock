@@ -939,10 +939,10 @@
   dependencies:
     "@types/yargs-parser" "*"
 
-"@yannickfricke/use-local-storage@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@yannickfricke/use-local-storage/-/use-local-storage-2.0.0.tgz#d5acb450937e936fe99bcdd1d43adf7989a60797"
-  integrity sha512-dZ6H3fAKXDP/bQYsyW63yQwIr85Yw2LdzzyIznDW7jQDYPLdk3vCGFvfpx7Z44kxWlwLdcnrM78uH8jgVFprVg==
+"@yannickfricke/use-local-storage@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@yannickfricke/use-local-storage/-/use-local-storage-2.0.1.tgz#a52189114af73b0265537babf390a6ae2ae92cdc"
+  integrity sha512-F6tzLdDhAqXp80AfFqK6r7U0XjnzT/KZJMYWdzbEkP9eVYMgPO3sVgSzdVdiByl8VCQpNT2f3gIkClCYpV/D/A==
 
 JSONStream@^1.0.4, JSONStream@^1.3.4, JSONStream@^1.3.5:
   version "1.3.5"
@@ -6050,14 +6050,6 @@ react-test-renderer@^17.0.1:
     react-is "^17.0.1"
     react-shallow-renderer "^16.13.1"
     scheduler "^0.20.1"
-
-react@^17.0.1:
-  version "17.0.1"
-  resolved "https://registry.yarnpkg.com/react/-/react-17.0.1.tgz#6e0600416bd57574e3f86d92edba3d9008726127"
-  integrity sha512-lG9c9UuMHdcAexXtigOZLX8exLWkW0Ku29qPRU8uhF2R9BN96dLCt0psvzPLlHc5OWkgymP3qwTRgbnw5BKx3w==
-  dependencies:
-    loose-envify "^1.1.0"
-    object-assign "^4.1.1"
 
 read-cmd-shim@^1.0.1, read-cmd-shim@^1.0.5:
   version "1.0.5"
