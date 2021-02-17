@@ -1,5 +1,4 @@
-import { Identifiable } from '../Identifiable';
-
-export interface ITestEntry extends Identifiable {
+export interface ITestEntry {
+    id: number;
     name: string;
 }
