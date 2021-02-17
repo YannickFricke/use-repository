@@ -21,15 +21,16 @@ import { IRepository } from './IRepository';
  *          const userRepository = useRepository(values, setValues);
  *          const users = userRepository.getAll();
  */
-export const useRepository = <T extends Identifiable>(
-    values: T[],
-    setValues: (newValue: T[]) => void,
-): IRepository<T> => {
+export const useRepository = <EntityType extends Identifiable>(
+    values: EntityType[],
+    setValues: (newValue: EntityType[]) => void,
+    idField: string = 'id',
+): IRepository<EntityType> => {
     return {
         /**
          * Returns all entries
          *
-         * @returns {T[]} All values from the data source
+         * @returns {EntityType[]} All values from the data source
          */
         getAll: function () {
             return values;
@@ -40,32 +41,32 @@ export const useRepository = <T extends Identifiable>(
          * Undefined will be returned when no entry was found.
          *
          * @param id The unique identifier of the entry
-         * @returns {T|undefined} The found entry or undefined when no entry was found
+         * @returns {EntityType|undefined} The found entry or undefined when no entry was found
          */
         find: function (id: Identifiable['id']) {
-            return this.findOneBy({
-                id,
-            } as Partial<T>) as T | undefined;
+            return this.findOneBy(({
+                [idField]: id,
+            } as unknown) as Partial<EntityType>) as EntityType | undefined;
         },
 
         /**
          * Finds one entity with the given params
          *
          * @param params The properties which should match
-         * @returns {T|undefined} The found entry or undefined when no entry was found
+         * @returns {EntityType|undefined} The found entry or undefined when no entry was found
          */
-        findOneBy: function (params: Partial<T>) {
-            return find(values, params) as T | undefined;
+        findOneBy: function (params: Partial<EntityType>) {
+            return find(values, params) as EntityType | undefined;
         },
 
         /**
          * Returns all entities who properties match the params
          *
          * @param params The params which should match
-         * @returns {T[]} The found entries
+         * @returns {EntityType[]} The found entries
          */
-        findBy: function (params: Partial<T>) {
-            return filter(values, params) as T[];
+        findBy: function (params: Partial<EntityType>) {
+            return filter(values, params) as EntityType[];
         },
 
         /**
@@ -73,7 +74,7 @@ export const useRepository = <T extends Identifiable>(
          *
          * @param value The entity which should be added
          */
-        insert: function (value: T) {
+        insert: function (value: EntityType) {
             if (this.find(value.id) !== undefined) {
                 return;
             }
@@ -88,13 +89,16 @@ export const useRepository = <T extends Identifiable>(
          * @param id The unique identifier of the entity which should be updated
          * @param newProps The new properties for the entry
          */
-        update: function (id: Identifiable['id'], newProps: Partial<T>) {
+        update: function (
+            id: Identifiable['id'],
+            newProps: Partial<EntityType>,
+        ) {
             if (this.find(id) === undefined) {
                 return;
             }
 
-            const newValues = values.map((entry) =>
-                entry.id !== id
+            const newValues = values.map((entry: any) =>
+                entry[idField] !== id
                     ? entry
                     : {
                           ...entry,
@@ -110,7 +114,7 @@ export const useRepository = <T extends Identifiable>(
          * @param id The unique identifier of the entry
          */
         remove: function (id: Identifiable['id']) {
-            setValues(values.filter((entry) => entry.id !== id));
+            setValues(values.filter((entry: any) => entry[idField] !== id));
         },
 
         /**
@@ -118,8 +122,8 @@ export const useRepository = <T extends Identifiable>(
          *
          * @param props The props which should be matched
          */
-        removeBy: function (props: Partial<T>) {
-            setValues(reject(values, props) as T[]);
+        removeBy: function (props: Partial<EntityType>) {
+            setValues(reject(values, props) as EntityType[]);
         },
 
         /**
