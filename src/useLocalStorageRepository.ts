@@ -6,8 +6,9 @@ import { useRepository } from './useRepository';
 
 export const useLocalStorageRepository = <T extends IEntityType>(
     tableName: string,
+    idField: string = 'id',
 ): IRepository<T> => {
     const [value, setValue] = useLocalStorage<T[]>(tableName, []);
 
-    return useRepository(value, setValue);
+    return useRepository(value, setValue, idField);
 };
