@@ -10,6 +10,8 @@ jobs:
               run: sudo npm install -g yarn
             - name: Install react as dependency
               run: yarn add react
+            - name: Check for compilation errors
+              run: yarn build
             - name: Run tests
               run: yarn test --collect-coverage
             - uses: codecov/codecov-action@v1
