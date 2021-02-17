@@ -109,9 +109,7 @@ describe('useRepository', () => {
             });
 
             expect(entries).toHaveLength(1);
-            expect(
-                entries,
-            ).toStrictEqual([
+            expect(entries).toStrictEqual([
                 {
                     id: testEntry.id,
                     name: 'TDD with jest rocks!',
@@ -154,9 +152,7 @@ describe('useRepository', () => {
             });
 
             expect(entries).toHaveLength(2);
-            expect(
-                entries,
-            ).toStrictEqual([
+            expect(entries).toStrictEqual([
                 {
                     id: testEntry.id,
                     name: 'TDD with jest rocks!',
