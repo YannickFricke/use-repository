@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/YannickFricke/use-repository/compare/v1.0.1...v1.1.0) (2021-02-17)
+
+
+### Features
+
+* **userepository:** added the idField parameter ([1721d53](https://github.com/YannickFricke/use-repository/commit/1721d53715d46fcb0d26fdc79654f49b70041dce))
+
 ## [1.0.1](https://github.com/YannickFricke/use-repository/compare/v1.0.0...v1.0.1) (2021-02-17)
 
 
