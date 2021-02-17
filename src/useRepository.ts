@@ -4,8 +4,7 @@ import find from 'lodash/find';
 import reject from 'lodash/reject';
 
 import { IRepository } from './IRepository';
-
-export type IDType = string | number;
+import { IDType, IEntityType } from './types';
 
 /**
  * A small function which provides repository functionalities for arrays.
@@ -22,7 +21,7 @@ export type IDType = string | number;
  *          const userRepository = useRepository(values, setValues);
  *          const users = userRepository.getAll();
  */
-export const useRepository = <EntityType extends Record<any, any>>(
+export const useRepository = <EntityType extends IEntityType>(
     values: EntityType[],
     setValues: (newValue: EntityType[]) => void,
     idField: string = 'id',
