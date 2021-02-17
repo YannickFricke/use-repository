@@ -1,3 +1,27 @@
+# [2.0.0](https://github.com/YannickFricke/use-repository/compare/v1.1.0...v2.0.0) (2021-02-17)
+
+
+### Bug Fixes
+
+* **irepository:** fixed the import statements + types refactor ([5fb052d](https://github.com/YannickFricke/use-repository/commit/5fb052d816f832c8b18335a877e8935df7dbe9ca))
+* **uselocalstoragerepository:** fixed the useLocalStorageRepository hook ([4bad12e](https://github.com/YannickFricke/use-repository/commit/4bad12efa4d2b227415840b49b0f0162150e13a9))
+
+
+### Code Refactoring
+
+* **userepository:** removed the "Identifiable" interface and refactored hook ([70e9eb8](https://github.com/YannickFricke/use-repository/commit/70e9eb8a076738d23d0b5c4b45a12b148a11c452))
+
+
+### Features
+
+* **usesyncedlocalstoragerepository:** added the useSyncedLocalStorageRepository hook ([ee5f71c](https://github.com/YannickFricke/use-repository/commit/ee5f71c6909a630091c0c26fab0fcce213167be5))
+
+
+### BREAKING CHANGES
+
+* **userepository:** Removed the hard dependency to the "Identifiable"
+interface
+
 # [1.1.0](https://github.com/YannickFricke/use-repository/compare/v1.0.1...v1.1.0) (2021-02-17)
 
 
