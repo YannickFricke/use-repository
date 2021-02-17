@@ -5,15 +5,17 @@ jobs:
         name: Tests
         runs-on: ubuntu-latest
         steps:
-            -   uses: actions/checkout@v2
-            -   name: Install modules
-                run: yarn install
-            -   name: Run tests
-                run: yarn test --collect-coverage
-            -   uses: codecov/codecov-action@v1
-                with:
-                    token: ${{ secrets.CODECOV_TOKEN }}
-                    fail_ci_if_error: true
+            - uses: actions/checkout@v2
+            - name: Install yarn
+              run: sudo npm install -g yarn
+            - name: Install react as dependency
+              run: yarn add react
+            - name: Run tests
+              run: yarn test --collect-coverage
+            - uses: codecov/codecov-action@v1
+              with:
+                  token: ${{ secrets.CODECOV_TOKEN }}
+                  fail_ci_if_error: true
 
     release:
         name: Release
@@ -21,11 +23,11 @@ jobs:
         if: github.ref == 'refs/heads/master'
         runs-on: ubuntu-latest
         steps:
-            -   uses: actions/checkout@v2
-            -   name: Install modules
-                run: yarn install
-            -   name: Release new version
-                run: yarn run release
-                env:
-                    NPM_TOKEN: ${{secrets.NPM_TOKEN}}
-                    GH_TOKEN: ${{secrets.GH_TOKEN}}
+            - uses: actions/checkout@v2
+            - name: Install modules
+              run: yarn install
+            - name: Release new version
+              run: yarn run release
+              env:
+                  NPM_TOKEN: ${{secrets.NPM_TOKEN}}
+                  GH_TOKEN: ${{secrets.GH_TOKEN}}

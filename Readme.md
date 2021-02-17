@@ -9,6 +9,7 @@
   - [NPM](#npm)
   - [Yarn](#yarn)
 - [TypeScript support](#typescript-support)
+  - [Identifiable objects](#identifiable-objects)
 - [Usage examples](#usage-examples)
 - [License](#license)
 
@@ -35,6 +36,11 @@ yarn add @yannickfricke/use-repository
 This package includes TypeScript definition files - so with every good IDE you can read those declaration files
 and get auto complete for the API.
 
+### Identifiable objects
+
+The identifiable interface defines the `id` property.
+The `id` must have the type of string or number.
+
 ## Usage examples
 
 ```ts
@@ -42,7 +48,10 @@ import { useState } from 'react';
 
 // Import the hook
 // The "useRepository" provides basic repository functions for an array of entities
-import { useRepository, useLocalStorageRepository } from '@yannickfricke/use-repository/dist';
+import {
+    useRepository,
+    useLocalStorageRepository,
+} from '@yannickfricke/use-repository/dist';
 
 // Define the values for the repository
 const [entities, setEntities] = useState([]);
@@ -56,7 +65,7 @@ const repository = useRepository(entities, setEntities);
 const allEntries = repository.getAll();
 
 // Find an entry by its id
-const foundEntryById = repository.find('idToSearch')
+const foundEntryById = repository.find('idToSearch');
 
 // Find a single entity with the given props
 const foundEntryByProps = repository.findOneBy({
@@ -72,7 +81,7 @@ const findEntriesByProps = repository.findBy({
 // NOTE: The "useRepository" makes no assumptions about your data structures,
 // so thats why you have to assign ids on yourself
 repository.insert({
-    name: 'testing useRepository hook'
+    name: 'testing useRepository hook',
 });
 
 // Update the entity with the given id
@@ -85,19 +94,17 @@ repository.remove('idToRemove');
 
 // Remove all entries with the name "Delete me"
 repository.removeBy({
-    name: 'Delete me'
+    name: 'Delete me',
 });
 
 // Remove all entities from the data source
 repository.removeAll();
-
 
 // Initialize the repository with the given table name
 // NOTE: The "useLocalStorageRepository" hook returns the same API as the "useRepository" hook.
 // The only difference is that the "useLocalStorageRepository"
 // will use the local storage of a browser as data source.
 const users = useLocalStorageRepository<User>('users');
-
 ```
 
 HINT:

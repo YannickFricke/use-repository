@@ -1,16 +1,37 @@
-import { Identifiable } from './Identifiable';
-import find from 'lodash/find';
-import filter from 'lodash/filter';
 import concat from 'lodash/concat';
+import filter from 'lodash/filter';
+import find from 'lodash/find';
 import reject from 'lodash/reject';
+
+import { Identifiable } from './Identifiable';
 import { IRepository } from './IRepository';
 
-export const useRepository = <T extends Identifiable>(values: T[], setValues: (newValue: T[]) => void): IRepository<T> => {
+/**
+ * A small function which provides repository functionalities for arrays.
+ *
+ * NOTE: The first function parameter must be the array.
+ *       The second function parameter must be a callback, which accepts a new
+ *       value and returns nothing (void).
+ *
+ * @param values The values of the data source
+ * @param setValues The callback for updating the data source
+ *
+ * @example Use react local state as values for the repository
+ *          const [values, setValues] = useState([]);
+ *          const userRepository = useRepository(values, setValues);
+ *          const users = userRepository.getAll();
+ */
+export const useRepository = <T extends Identifiable>(
+    values: T[],
+    setValues: (newValue: T[]) => void,
+): IRepository<T> => {
     return {
         /**
          * Returns all entries
+         *
+         * @returns {T[]} All values from the data source
          */
-        getAll: function() {
+        getAll: function () {
             return values;
         },
 
@@ -18,10 +39,10 @@ export const useRepository = <T extends Identifiable>(values: T[], setValues: (n
          * Returns the entry with the given id.
          * Undefined will be returned when no entry was found.
          *
-         * @param {string} id The unique identifier of the entry
-         * @return {T | undefined} The found entry or undefined when no entry was found
+         * @param id The unique identifier of the entry
+         * @returns {T|undefined} The found entry or undefined when no entry was found
          */
-        find: function(id: Identifiable['id']) {
+        find: function (id: Identifiable['id']) {
             return this.findOneBy({
                 id,
             } as Partial<T>) as T | undefined;
@@ -30,37 +51,34 @@ export const useRepository = <T extends Identifiable>(values: T[], setValues: (n
         /**
          * Finds one entity with the given params
          *
-         * @param {Partial<T>} params The properties which should match
-         * @return {T | undefined} The found entry or undefined when no entry was found
+         * @param params The properties which should match
+         * @returns {T|undefined} The found entry or undefined when no entry was found
          */
-        findOneBy: function(params: Partial<T>) {
+        findOneBy: function (params: Partial<T>) {
             return find(values, params) as T | undefined;
         },
 
         /**
          * Returns all entities who properties match the params
          *
-         * @param {Partial<T>} params The params which should match
-         * @return {T[]} The found entries
+         * @param params The params which should match
+         * @returns {T[]} The found entries
          */
-        findBy: function(params: Partial<T>) {
+        findBy: function (params: Partial<T>) {
             return filter(values, params) as T[];
         },
 
         /**
          * Inserts a new entity
          *
-         * @param {T} value The entity which should be added
+         * @param value The entity which should be added
          */
-        insert: function(value: T) {
+        insert: function (value: T) {
             if (this.find(value.id) !== undefined) {
                 return;
             }
 
-            const newValues = concat(
-                values,
-                value,
-            );
+            const newValues = concat(values, value);
             setValues(newValues);
         },
 
@@ -70,15 +88,19 @@ export const useRepository = <T extends Identifiable>(values: T[], setValues: (n
          * @param id The unique identifier of the entity which should be updated
          * @param newProps The new properties for the entry
          */
-        update: function(id: Identifiable['id'], newProps: Partial<T>) {
+        update: function (id: Identifiable['id'], newProps: Partial<T>) {
             if (this.find(id) === undefined) {
                 return;
             }
 
-            const newValues = values.map(entry => entry.id !== id ? entry : {
-                ...entry,
-                ...newProps,
-            });
+            const newValues = values.map((entry) =>
+                entry.id !== id
+                    ? entry
+                    : {
+                          ...entry,
+                          ...newProps,
+                      },
+            );
             setValues(newValues);
         },
 
@@ -87,8 +109,8 @@ export const useRepository = <T extends Identifiable>(values: T[], setValues: (n
          *
          * @param id The unique identifier of the entry
          */
-        remove: function(id: Identifiable['id']) {
-            setValues(values.filter(entry => entry.id !== id));
+        remove: function (id: Identifiable['id']) {
+            setValues(values.filter((entry) => entry.id !== id));
         },
 
         /**
@@ -96,14 +118,14 @@ export const useRepository = <T extends Identifiable>(values: T[], setValues: (n
          *
          * @param props The props which should be matched
          */
-        removeBy: function(props: Partial<T>) {
+        removeBy: function (props: Partial<T>) {
             setValues(reject(values, props) as T[]);
         },
 
         /**
          * Removes all entries
          */
-        removeAll: function() {
+        removeAll: function () {
             setValues([]);
         },
     };
