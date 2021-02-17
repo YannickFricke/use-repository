@@ -1,3 +1,10 @@
+## [2.0.1](https://github.com/YannickFricke/use-repository/compare/v2.0.0...v2.0.1) (2021-02-17)
+
+
+### Bug Fixes
+
+* **ci#release:** refactored the release step and bump for the version ([94498cf](https://github.com/YannickFricke/use-repository/commit/94498cf6bfe1e77f78eca5150977b6699608c619))
+
 # [2.0.0](https://github.com/YannickFricke/use-repository/compare/v1.1.0...v2.0.0) (2021-02-17)
 
 
