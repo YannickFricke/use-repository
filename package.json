@@ -18,7 +18,7 @@
     },
     "dependencies": {
         "@yannickfricke/use-local-storage": "^2.0.1",
-        "lodash": "^4.17.20",
+        "lodash": "^4.17.21",
         "react": "^17.0.1"
     },
     "devDependencies": {
